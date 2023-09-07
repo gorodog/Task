@@ -166,6 +166,7 @@ is.find_all이 아니라 i.find_all로 써야됨<br/>
 > ::after <br/>
 > ::before
 <br/>
+
 [CSS 가상 요소 "::before"와 "::after" 완벽 정리](https://blogpack.tistory.com/1025)
 
 <br/>
@@ -199,7 +200,7 @@ table로 받지 않아서 그런 것으로 추정...<br/>
 ## 11. 표 - html <table> tag 크롤링 
 ## ...
 
-[HTML <tr> tag](https://www.w3schools.com/tags/tag_tr.asp)
+[HTML \<tr> tag](https://www.w3schools.com/tags/tag_tr.asp)
 
 <br/>
 
