@@ -1,15 +1,18 @@
 # ALL-CON 사이트 웹크롤링
 대학생·일반인 대외활동   
-[link_all_con](https://www.all-con.co.kr/list/contest/2/1?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=)   
+[link_all_con](https://www.all-con.co.kr/list/contest/2/1?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=)<br/>
+<br/>
 
-   
-### 과제를 수행하며 발생한 이슈를 두서없이 작성하여, 아직 정리되지 않은 초안입니다.
+---
+<br/>
+**<u>과제를 수행하며 발생한 이슈를 두서없이 작성한, 아직 정리되지 않은 초안입니다.</u>**<br/>
+<br/>
 
-   
+
 ## 1.
 처음엔 링커리어 사이트로 크롤링하려 했으나, 코드가 너무 복잡하여 사이트 변경   
 <br/>
-<br/>
+
 ---
 
 ## 2. 사용 함수
@@ -19,7 +22,7 @@
 .find(“   “)<br/>
 .find_all(“   “)<br/>
 <br/>
-<br/>
+
 ---
 
 ## 3. raise FeatureNotFound 오류
@@ -45,12 +48,12 @@ pip install lxml<br/>
 lxml을 설치해주면 해결된다.<br/>
 애초에 beautifulsoup와 requests를 전부 설치하면서 lxml 혹은 html.parser을 함께 설치해야한다.<br/>
 <br/>
-<br/>
+
 ---
 
 ## 4. AttributeError: 'NoneType' object has no attribute 'text' 오류
 <br/>
-<br/>
+
 ---
 
 ## 5. dataFrame으로 저장
@@ -59,12 +62,12 @@ lxml을 설치해주면 해결된다.<br/>
 df.to_csv('pizza.txt')
 ```
 <br/>
-<br/>
+
 ---
 
 ## 6. lxml과 html.parser의 차이점
 <br/>
-<br/>
+
 ---
 
 ## 7. beautifulsoup 명령어
@@ -72,7 +75,7 @@ df.to_csv('pizza.txt')
 [<Python 크롤링> 2. Beautiful Soup, bs4 사용법, find(), find_all(), select()](https://parkjh7764.tistory.com/139)<br/>
 [Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)<br/>
 <br/>
-<br/>
+
 ---
 
 ## 8. AttributeError: ResultSet object has no attribute 'find_all' 오류
@@ -124,7 +127,7 @@ for i in is:
 ```
 is.find_all이 아니라 i.find_all로 써야됨<br/>
 <br/>
-<br/>
+
 ---
 
 ## 9. 가상요소
@@ -133,7 +136,7 @@ is.find_all이 아니라 i.find_all로 써야됨<br/>
 <br/>
 [CSS 가상 요소 "::before"와 "::after" 완벽 정리](https://blogpack.tistory.com/1025)<br/>
 <br/>
-<br/>
+
 ---
 
 ## 10. 출력값 1 이슈
@@ -155,14 +158,14 @@ print(len(a_list))
 tr을 th로 바꿔서 수행해도 같은 값이 나옴.<br/>
 table로 받지 않아서 그런 것으로 추정...<br/>
 <br/>
-<br/>
+
 ---
 
 ## 11. html <table> tag 크롤링
 [HTML 테이블 구조 (Python 웹크롤링)](https://greendreamtrre.tistory.com/194)<br/>
 이 포스트를 보고 코드 작성, 올콘 페이지에 맞게 보완 필요.<br/>
 <br/>
-<br/>
+
 ---
 
 ## 12. 참고용
