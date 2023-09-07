@@ -8,18 +8,18 @@
    
 ## 1.
 처음엔 링커리어 사이트로 크롤링하려 했으나, 코드가 너무 복잡하여 사이트 변경   
-   
-   
+<br/>
+<br/>
 ---
 
 ## 2. 사용 함수
-().select_one(“   “)   
-().text   
-().get(“   “)   
-.find(“   “)   
-.find_all(“   “)   
-   
-   
+().select_one(“   “)<br/>
+().text<br/>
+().get(“   “)<br/>
+.find(“   “)<br/>
+.find_all(“   “)<br/>
+<br/>
+<br/>
 ---
 
 ## 3. raise FeatureNotFound 오류
@@ -33,24 +33,24 @@ headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36
 res = requests.get(url, headers=headers)
 soup = BeautifulSoup(res.text, 'lxml')
 ```
-   
+<br/>
 <u>**오류코드**</u>
 ```
 raise FeatureNotFound(
 bs4.FeatureNotFound: Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?
 ```
-   
+<br/>
 <u>**해결 방법**</u>
-pip install lxml   
-lxml을 설치해주면 해결된다.   
-애초에 beautifulsoup와 requests를 전부 설치하면서 lxml 혹은 html.parser을 함께 설치해야한다.   
-   
-    
+pip install lxml<br/>
+lxml을 설치해주면 해결된다.<br/>
+애초에 beautifulsoup와 requests를 전부 설치하면서 lxml 혹은 html.parser을 함께 설치해야한다.<br/>
+<br/>
+<br/>
 ---
 
 ## 4. AttributeError: 'NoneType' object has no attribute 'text' 오류
-   
-   
+<br/>
+<br/>
 ---
 
 ## 5. dataFrame으로 저장
@@ -58,22 +58,21 @@ lxml을 설치해주면 해결된다.
 ```
 df.to_csv('pizza.txt')
 ```
-   
-   
+<br/>
+<br/>
 ---
 
 ## 6. lxml과 html.parser의 차이점
-   
-   
-   
+<br/>
+<br/>
 ---
 
 ## 7. beautifulsoup 명령어
-[BeautifulSoup SELECT 정리 및 사용법](https://pythonblog.co.kr/coding/11/)   
-[<Python 크롤링> 2. Beautiful Soup, bs4 사용법, find(), find_all(), select()](https://parkjh7764.tistory.com/139)   
-[Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)   
-   
-   
+[BeautifulSoup SELECT 정리 및 사용법](https://pythonblog.co.kr/coding/11/)<br/>
+[<Python 크롤링> 2. Beautiful Soup, bs4 사용법, find(), find_all(), select()](https://parkjh7764.tistory.com/139)<br/>
+[Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)<br/>
+<br/>
+<br/>
 ---
 
 ## 8. AttributeError: ResultSet object has no attribute 'find_all' 오류
@@ -103,38 +102,38 @@ for li in lis:
     print("호스트: ", host)
     print(n_title)
 ```
-   
+<br/>
 <u>**오류코드**</u>   
 ```
 AttributeError: ResultSet object has no attribute 'find_all'. You're probably treating a list of elements like a single element. Did you call 
 find_all() when you meant to call find()?
 ```
-   
+<br/>
 <u>**해결 방법**</u>   
-1. 못 찾음   
-아마 tr은 table 형식에서 쓰는 거라 가져온 a_list가 잘못됐을 것 같다는 생각.
-   
-   
-2. [BeautifulSoup find_all()과 find()의 차이점](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=dydgus092&logNo=221151686143)   
-   
-   
+1. 못 찾음<br/>
+아마 tr은 table 형식에서 쓰는 거라 가져온 a_list가 잘못됐을 것 같다는 생각.<br/>
+<br/>
+<br/>
+2. [BeautifulSoup find_all()과 find()의 차이점](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=dydgus092&logNo=221151686143)<br/>
+<br/>
+<br/>
 3. for문 돌릴 때 함수명 실수로 발생하는 오류이므로 함수명 수정
 ```
 for i in is:
   ap = is.find_all('a')
 ```
-is.find_all이 아니라 i.find_all로 써야됨   
-   
-   
+is.find_all이 아니라 i.find_all로 써야됨<br/>
+<br/>
+<br/>
 ---
 
 ## 9. 가상요소
 > ::after
 > ::before
-   
-[CSS 가상 요소 "::before"와 "::after" 완벽 정리](https://blogpack.tistory.com/1025)   
-   
-    
+<br/>
+[CSS 가상 요소 "::before"와 "::after" 완벽 정리](https://blogpack.tistory.com/1025)<br/>
+<br/>
+<br/>
 ---
 
 ## 10. 출력값 1 이슈
@@ -151,19 +150,19 @@ soup = BeautifulSoup(res.text, 'lxml')
 a_list = soup.select("tr")
 print(len(a_list))
 ```
-출력값: 1   
-   
-tr을 th로 바꿔서 수행해도 같은 값이 나옴.   
-table로 받지 않아서 그런 것으로 추정...   
-   
-   
+출력값: 1<br/>
+<br/>
+tr을 th로 바꿔서 수행해도 같은 값이 나옴.<br/>
+table로 받지 않아서 그런 것으로 추정...<br/>
+<br/>
+<br/>
 ---
 
 ## 11. html <table> tag 크롤링
-[HTML 테이블 구조 (Python 웹크롤링)](https://greendreamtrre.tistory.com/194)   
-이 포스트를 보고 코드 작성, 올콘 페이지에 맞게 보완 필요.   
-   
-   
+[HTML 테이블 구조 (Python 웹크롤링)](https://greendreamtrre.tistory.com/194)<br/>
+이 포스트를 보고 코드 작성, 올콘 페이지에 맞게 보완 필요.<br/>
+<br/>
+<br/>
 ---
 
 ## 12. 참고용
