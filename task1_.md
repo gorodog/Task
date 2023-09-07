@@ -199,8 +199,14 @@ table로 받지 않아서 그런 것으로 추정...<br/>
 ## 11. 표 - html <table> tag 크롤링 
 ## ...
 
+[HTML <tr> tag](https://www.w3schools.com/tags/tag_tr.asp)
+
+<br/>
 
 원래 하던 식과는 다른 방법으로 요소를 가져와야함.
+
+
+<br/>
 
 <br/>
 
