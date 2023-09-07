@@ -1,3 +1,6 @@
+# all-con 사이트 웹크롤링
+
+# requests, beautifulsoup 라이브러리 불러오기
 import requests
 from bs4 import BeautifulSoup
 
@@ -7,8 +10,11 @@ headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36
 res = requests.get(url, headers=headers)
 soup = BeautifulSoup(res.text, 'lxml')
 
+# 올콘 대외활동 페이지는 table 형식으로 정보가 정리돼 있어서 find로 table을 불러옴
 a_list = soup.find('table')
 
+# 컬럼헤더 가져오기
+### 컬럼헤더는 thead 타입 안에 tr > th 타입으로 저장되어 있음
 thead = a_list.find_all('th')
 
 theadList = []
@@ -21,16 +27,17 @@ for i in range(0,theadLen):
 print(theadList)
 
 
-
+# 컬럼바디 가져오기
+### 가져와야하는 정보가 모두 저장되어 있는 부분
+### tbody 타입 안에 tr > td 타입으로 저장되어 있음
 tbody = a_list.find('tbody', {'id':'tbl-list'})
 
 trData = tbody.find_all('tr')
 
-tdData = trData[0].find_all('td')
+tdData = trData[0].find_all('td') # index out of range 오류
 
 
-
-
+# 수정해야함
 rowList = []
 columnList = []
 
@@ -47,3 +54,11 @@ for i in range(0,trDataLen):
         columnList = []
     
 print(rowList)
+
+
+
+# pandas로 저장
+import pandas as pd
+
+result = pd.DataFrame(rowList, columns=theadList)
+print(result)
