@@ -5,13 +5,11 @@
 ### 과제를 수행하며 발생한 이슈를 두서없이 작성하여, 아직 정리되지 않은 초안입니다.
 
 ## 1.
----
 처음엔 링커리어 사이트로 크롤링하려 했으나, 코드가 너무 복잡하여 사이트 변경
 
 ---
 
 ## 2. 사용 함수
----
 ().select_one(“   “)
 ().text
 ().get(“   “)
@@ -21,7 +19,6 @@
 ---
 
 ## 3. raise FeatureNotFound 오류
----
 ```
 import requests
 from bs4 import BeautifulSoup
@@ -51,7 +48,6 @@ lxml을 설치해주면 해결된다.
 ---
 
 ## 5. dataFrame으로 저장
-
 - dataFrame 텍스트로 저장
 ```
 df.to_csv('pizza.txt')
@@ -65,7 +61,6 @@ df.to_csv('pizza.txt')
 ---
 
 ## 7. beautifulsoup 명령어
----
 [BeautifulSoup SELECT 정리 및 사용법](https://pythonblog.co.kr/coding/11/)
 [<Python 크롤링> 2. Beautiful Soup, bs4 사용법, find(), find_all(), select()](https://parkjh7764.tistory.com/139)
 [Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
@@ -73,7 +68,6 @@ df.to_csv('pizza.txt')
 ---
 
 ## 8. AttributeError: ResultSet object has no attribute 'find_all' 오류
----
 ```
 import requests
 from bs4 import BeautifulSoup
@@ -121,7 +115,6 @@ is.find_all이 아니라 i.find_all로 써야됨
 ---
 
 ## 9. 가상요소
----
 > ::after
 > ::before
 [CSS 가상 요소 "::before"와 "::after" 완벽 정리](https://blogpack.tistory.com/1025)
@@ -129,7 +122,6 @@ is.find_all이 아니라 i.find_all로 써야됨
 ---
 
 ## 10. 출력값 1 이슈
----
 ```
 import requests
 from bs4 import BeautifulSoup
@@ -151,7 +143,6 @@ table로 받지 않아서 그런 것으로 추정...
 ---
 
 ## 11. html <table> tag 크롤링
----
 [HTML 테이블 구조 (Python 웹크롤링)](https://greendreamtrre.tistory.com/194)
 이 포스트를 보고 코드 작성, 올콘 페이지에 맞게 보완 필요.
 
