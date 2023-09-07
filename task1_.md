@@ -2,7 +2,7 @@
 대학생·일반인 대외활동
 [link_all_con](https://www.all-con.co.kr/list/contest/2/1?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=)
 
-# 과제를 수행하며 발생한 이슈를 두서없이 작성하여, 아직 정리되지 않은 초안입니다.
+### 과제를 수행하며 발생한 이슈를 두서없이 작성하여, 아직 정리되지 않은 초안입니다.
 
 ## 1.
 ---
