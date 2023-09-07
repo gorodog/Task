@@ -3,11 +3,12 @@
 [link_all_con](https://www.all-con.co.kr/list/contest/2/1?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=)<br/>
 <br/>
 
----
-<br/>
-**<u>과제를 수행하며 발생한 이슈를 두서없이 작성한, 아직 정리되지 않은 초안입니다.</u>**<br/>
+
+**※ 과제를 수행하며 발생한 이슈를 두서없이 작성한, 아직 정리되지 않은 초안입니다.**
+
 <br/>
 
+---
 
 ## 1.
 처음엔 링커리어 사이트로 크롤링하려 했으나, 코드가 너무 복잡하여 사이트 변경   
@@ -37,16 +38,25 @@ res = requests.get(url, headers=headers)
 soup = BeautifulSoup(res.text, 'lxml')
 ```
 <br/>
-<u>**오류코드**</u>
+
+> 오류코드
+
 ```
 raise FeatureNotFound(
 bs4.FeatureNotFound: Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?
 ```
+
 <br/>
-<u>**해결 방법**</u>
-pip install lxml<br/>
+
+> 해결 방법
+
+```
+pip install lxml
+```
+
 lxml을 설치해주면 해결된다.<br/>
 애초에 beautifulsoup와 requests를 전부 설치하면서 lxml 혹은 html.parser을 함께 설치해야한다.<br/>
+
 <br/>
 
 ---
@@ -57,10 +67,26 @@ lxml을 설치해주면 해결된다.<br/>
 ---
 
 ## 5. dataFrame으로 저장
-- dataFrame 텍스트로 저장
+- dataFrame으로 변환
+
 ```
+import pandas as pd
+
+file = pd.DataFrame(newsData)
+print(file)
+```
+
+
+<br/>
+
+- dataFrame을 텍스트로 저장
+
+```
+import pandas as pd
+
 df.to_csv('pizza.txt')
 ```
+
 <br/>
 
 ---
@@ -71,9 +97,9 @@ df.to_csv('pizza.txt')
 ---
 
 ## 7. beautifulsoup 명령어
-[BeautifulSoup SELECT 정리 및 사용법](https://pythonblog.co.kr/coding/11/)<br/>
-[<Python 크롤링> 2. Beautiful Soup, bs4 사용법, find(), find_all(), select()](https://parkjh7764.tistory.com/139)<br/>
-[Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)<br/>
+1. [BeautifulSoup SELECT 정리 및 사용법](https://pythonblog.co.kr/coding/11/)<br/>
+2. [[Python 크롤링] 2. Beautiful Soup, bs4 사용법, find(), find_all(), select()](https://parkjh7764.tistory.com/139)<br/>
+3. [Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)<br/>
 <br/>
 
 ---
@@ -106,14 +132,18 @@ for li in lis:
     print(n_title)
 ```
 <br/>
-<u>**오류코드**</u>   
+
+> 오류코드
+  
 ```
 AttributeError: ResultSet object has no attribute 'find_all'. You're probably treating a list of elements like a single element. Did you call 
 find_all() when you meant to call find()?
 ```
 <br/>
-<u>**해결 방법**</u>   
-1. 못 찾음<br/>
+
+> 해결 방법 
+
+1.못 찾음<br/>
 아마 tr은 table 형식에서 쓰는 거라 가져온 a_list가 잘못됐을 것 같다는 생각.<br/>
 <br/>
 <br/>
@@ -121,20 +151,25 @@ find_all() when you meant to call find()?
 <br/>
 <br/>
 3. for문 돌릴 때 함수명 실수로 발생하는 오류이므로 함수명 수정
+   
 ```
 for i in is:
   ap = is.find_all('a')
 ```
+
 is.find_all이 아니라 i.find_all로 써야됨<br/>
 <br/>
 
 ---
 
 ## 9. 가상요소
-> ::after
+> ::after <br/>
 > ::before
 <br/>
-[CSS 가상 요소 "::before"와 "::after" 완벽 정리](https://blogpack.tistory.com/1025)<br/>
+[CSS 가상 요소 "::before"와 "::after" 완벽 정리](https://blogpack.tistory.com/1025)
+
+<br/>
+
 <br/>
 
 ---
@@ -161,13 +196,23 @@ table로 받지 않아서 그런 것으로 추정...<br/>
 
 ---
 
-## 11. html <table> tag 크롤링
-[HTML 테이블 구조 (Python 웹크롤링)](https://greendreamtrre.tistory.com/194)<br/>
-이 포스트를 보고 코드 작성, 올콘 페이지에 맞게 보완 필요.<br/>
+## 11. 표 - html <table> tag 크롤링 
+## ...
+
+
+원래 하던 식과는 다른 방법으로 요소를 가져와야함.
+
+<br/>
+
+[HTML 테이블 구조 (Python 웹크롤링)](https://greendreamtrre.tistory.com/194)
+
+<br/>
+
+이 포스트를 보고 코드 작성함. 올콘 페이지에 맞게 보완 필요.
+
 <br/>
 
 ---
-
 ## 12. 참고용
 ```
 tag_lst = [] for a in a_tag: if "href" in a.attrs: # href가 있는것만 고르는 것 
