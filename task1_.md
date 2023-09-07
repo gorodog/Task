@@ -219,3 +219,22 @@ tag_lst = [] for a in a_tag: if "href" in a.attrs: # href가 있는것만 고르
 if (f"sid={sid}" in a["href"]) and ("article" in a["href"]):
 tag_lst.append(a["href"])
 ```
+
+```
+import requests
+from bs4 import BeautifulSoup
+
+# 크롤링할 링커리어 페이지의 URL & 헤더
+url = "[https://www.linkcareer.co.kr/](https://www.all-con.co.kr/list/contest/2/1?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=)"
+headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"}
+
+# 웹페이지 내용을 가져오기
+response = requests.get(url)
+
+# HTTP 응답 코드를 확인하여 정상적으로 응답 받았는지 확인
+if response.status_code == 200:
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+else:
+    print("HTTP 요청에 실패하였습니다. 응답 코드:", response.status_code)
+```
