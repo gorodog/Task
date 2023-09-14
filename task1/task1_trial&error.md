@@ -1011,7 +1011,7 @@ for i in range(0,5):
 걸린 시간: 12.4초<br>
 <br>
 수정해야할 것 중에서 <br>
-1.첫번째 column 해결,<br>
+1.첫번째 column 해결<br>
 
 
 ### 제목에서 불필요한 요소 제거
@@ -1153,8 +1153,9 @@ print(result)
 ```
 
 에러 발생
+<br>
 
-> concat(["a{}".format(i)]) 
+> concat(["a{}".format(i)]) <br>
 > 이 부분 코드가 제대로 안 먹히는 오류
 
 <br>
@@ -1190,10 +1191,12 @@ https://passwd.tistory.com/entry/Python-Pandas-%EB%B0%98%EB%B3%B5%EB%AC%B8%EC%9C
 UnboundLocalError: cannot access local variable 'result' where it is not associated with a value"
 }
 ```
-> 문제
+> 문제<br>
 전역변수 result가 제대로 선언되지 않은 문제
+<br>
+<br>
 
-> 해결방법
+> 해결방법<br>
 concat 함수 전에 result를 선언해주어 해결
 
 ``` python
@@ -1240,7 +1243,7 @@ def concat(a):
 result_finish = result.drop_duplicates()
 ```
 
-> 해결
+> 해결<br>
 result DataFrame의 중복을 제거하여 result_finish에 저장해서 해결
 
 
@@ -1273,7 +1276,7 @@ link = link_on.get_attribute("href")
 <br>
 <br>
 
-> 해결 방안
+> 해결 방안<br>
 한 줄로 코드 수정
 
 
