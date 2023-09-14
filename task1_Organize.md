@@ -2,6 +2,7 @@
 
 ## 1. 목표 사이트
 링커리어(https://linkareer.com/list/intern?gclid=Cj0KCQjwmICoBhDxARIsABXkXlJlZAGt_Dy-1h6-DfBfDp-92-wbiK-3c--1z5vTkquOLp-Ru0IMJhUaAnVqEALw_wcB)
+<br>
 -> 대외활동 사이트 올콘 (https://www.all-con.co.kr/)
 변경
 
@@ -47,13 +48,11 @@ XHR(XMLHttpRequest) 요청은 "XHR" 또는 "XMLHttpRequest"로 표시되며, Fet
 
 ***
 
-##### 아래 두 개의 코드를 참고하여 3차 코드 작성.
-<br>
+### 아래 두 개의 코드를 참고하여 3차 코드 작성.
 <br>
 
 - [웹 크롤링/selenium 4](https://wikidocs.net/177133)
 
-<br>
 
 참고 코드
 ``` javascript
@@ -78,7 +77,6 @@ By. 뒤쪽의 명령어를 구분하여 사용하는 예시를 참고하였다.
 
 - [[라인맨 포지션 평가] 웹 페이지 테이블 크롤링](https://velog.io/@eunsuh/%EB%9D%BC%EC%9D%B8%EB%A7%A8-%ED%8F%AC%EC%A7%80%EC%85%98-%ED%8F%89%EA%B0%80-%EC%9B%B9-%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%85%8C%EC%9D%B4%EB%B8%94-%ED%81%AC%EB%A1%A4%EB%A7%81)
 
-<br>
 
 참고 코드
 ``` javascript
@@ -105,8 +103,11 @@ for index, value in enumerate(rows):
     i += 1
 ```
 아래 코드에서 i(랭킹 번호)를 제외하고 
+<br>
 1.find_elements로 요소를 가져온 것, 
+<br>
 2.value.find_elements(By.TAG_NAME, "td)[1].text 를 이용해 텍스트를 가져온 것
+<br>
 을 활용하여 코드를 작성하였다.
 
 <br>
@@ -115,7 +116,7 @@ for index, value in enumerate(rows):
 
 ## 3. 목표 사이트를 접근하기 위해서 수정한 코드 설명(Trial and Error)
 
-task1_trial_and_error 파일에 작성해두었습니다.
+[task1_trial_and_error파일](https://github.com/gorodog/Task/blob/main/task1_trial_and_error.ipynb)에 작성해두었습니다.
 
 
 <br>
@@ -156,10 +157,10 @@ result.to_csv('allcon_result_c.csv',index=False,encoding='utf-8-sig')
 
 ### 구상 / 구현하지 못한 요소
 1. 출력하고 싶은 대외활동 개수를 입력 받아서 크롤링
-  - 개수보다 페이지 수로 불러오는 것이 더 효과적일 것으로 생각하여, 페이지 수를 입력하는 것으로 대체
+    - 개수보다 페이지 수로 불러오는 것이 더 효과적일 것으로 생각하여, 페이지 수를 입력하는 것으로 대체
 2. 링커리어 사이트와 대외활동 비교
-  - 링커리어 사이트가 너무 복잡하게 만들어져 있어서 실패
+    - 링커리어 사이트가 너무 복잡하게 만들어져 있어서 실패
 3. 각 대외활동 별로 본문에 접속해서 상세 데이터 모으기
-  - 양식이 정형화 되어 있지 않아서 데이터 전처리가 필요하며, 정보를 이미지로 첨부한 경우도 있어 지금 구현하기에는 어려울 것이라 판단.
+    - 양식이 정형화 되어 있지 않아서 데이터 전처리가 필요하며, 정보를 이미지로 첨부한 경우도 있어 지금 구현하기에는 어려울 것이라 판단.
 4. 올콘 사이트에서 대외활동과 공모전을 분리해서 둘 다 크롤링
-  - 하려 했으나, 딱히 의미가 없는 것 같아 수행하지 않았다.
+    - 하려 했으나, 딱히 의미가 없는 것 같아 수행하지 않았다.
