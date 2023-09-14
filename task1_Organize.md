@@ -114,12 +114,8 @@ for index, value in enumerate(rows):
 <br>
 
 ## 3. 목표 사이트를 접근하기 위해서 수정한 코드 설명(Trial and Error)
-### 1. 수정한 코드
-### 2. 오류
-### 3. 수정한 코드
-### 4. 오류
-### 5. 수정한 코드
-### 6. 오류
+
+task1_trial_and_error 파일에 작성해두었습니다.
 
 
 <br>
