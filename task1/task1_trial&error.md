@@ -99,22 +99,7 @@ print(file)
 
 1.  raise FeatureNotFound 오류
 
-
-``` python
-import requests
-from bs4 import BeautifulSoup
-
-url = "https://news.naver.com/main/ranking/popularMemo.naver" 
-headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"}
-
-res = requests.get(url, headers=headers)
-soup = BeautifulSoup(res.text, 'lxml')
-
-```
-
-
 > 오류코드
-
 
 ``` python
 raise FeatureNotFound(
@@ -139,20 +124,7 @@ lxml을 설치해주면 해결된다.<br/>
 
 
 ``` python
-import requests
-from bs4 import BeautifulSoup
-
-
-url = "https://www.all-con.co.kr/list/contest/2/1?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg="
-headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"}
-
-
-res = requests.get(url, headers=headers)
-soup = BeautifulSoup(res.text, 'lxml')
-
-
 a_list = soup.select(".tbl_head01 tbl_wrap")
-
 
 lis = a_list.find_all('tr') # 오류 발생
 for li in lis:
@@ -201,13 +173,6 @@ is.find_all이 아니라 i.find_all로 써야한다.
 
 
 ``` python
-import requests
-from bs4 import BeautifulSoup
-
-url = "https://news.naver.com/main/ranking/popularMemo.naver" 
-headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"}
-
-res = requests.get(url, headers=headers)
 soup = BeautifulSoup(res.text, 'lxml')
 
 a_list = soup.select("tr")
@@ -347,29 +312,14 @@ trData = tbody.find_all('tr')
 
 # trData 비어 있지 않으면 수행
 if trData:
-    tdData = trData[0].find_all('td') # index out of range 오류
-    # 수정해야함
-    rowList = []
-    columnList = []
-
-    trDataLen = len(trData)
-    for i in range(0,trDataLen):
-        tdData = trData[i].find_all('td')
-    
-        tdDataLen = len(tdData)
-        for j in range(0,tdDataLen):
-            element = tdData[j].text
-            columnList.append(element)
-
-            rowList.append(columnList)
-            columnList = []
-    
-    print(rowList)
+    print('있음')
     
 # 비어 있을 때 수행
 else:
     print('아무것도 없음')
 ```
+
+출력값: '아무것도 없음'
 
 
 2.5 AttributeError
@@ -389,14 +339,14 @@ print(len(tr))
 #### 챗GPT
 
 * * *
-
+```
 "ResultSet object has no attribute 'find_all'" 오류는 BeautifulSoup의 ResultSet 객체에서 find_all 메서드를 호출하려고 시도했을 때 발생하는 오류입니다. 이 오류는 주로 BeautifulSoup의 find_all 메서드를 적용해야 하는데 대상이 되는 HTML 요소를 찾지 못한 경우에 발생합니다.
 
 먼저, 다음과 같은 점을 확인하십시오:
 
 'tbody' 태그와 {'id': 'tbl-list'} 속성으로 요소를 찾은 결과가 tbody 변수에 할당되었는지 확인하세요.
 trData 변수에는 tbody에서 찾은 모든 tr 요소들의 리스트가 들어가야 합니다.
-
+```
 
 ``` python
 # 컬럼바디 가져오기
@@ -437,33 +387,27 @@ tbody가 ResultSet 객체가 아닌 list 객체로 반환된 이유는 soup.find
 
 
 ``` python
-from bs4 import BeautifulSoup
-
-// 웹 페이지의 HTML 데이터를 얻습니다. 예를 들어 requests를 사용하여 페이지를 가져온다고 가정합니다.
-html_data = requests.get("Your_Webpage_URL_here").text
-
-// BeautifulSoup으로 HTML을 파싱합니다.
-soup = BeautifulSoup(html_data, 'html.parser')
-
-// <tbody> 요소를 찾습니다.
+# <tbody> 요소를 찾습니다.
 tbody_elements = soup.find_all('tbody', {'id': 'tbl-list'})
 
-// 모든 <tbody> 요소를 반복합니다.
+# 모든 <tbody> 요소를 반복합니다.
 for tbody in tbody_elements:
-    //각 <tbody> 요소 내에서 <tr> 요소를 찾습니다.
+    # 각 <tbody> 요소 내에서 <tr> 요소를 찾습니다.
     tr_elements = tbody.find_all('tr')
     
-    // 찾은 <tr> 요소들을 순회하면서 처리할 수 있습니다.
+    # 찾은 <tr> 요소들을 순회하면서 처리할 수 있습니다.
     for tr in tr_elements:
-        // 각 <tr> 요소에 대한 작업을 수행합니다.
-        // 예를 들어, 각 <td> 요소에서 데이터를 추출하거나 출력할 수 있습니다.
+        # 각 <tr> 요소에 대한 작업을 수행합니다.
+        # 예를 들어, 각 <td> 요소에서 데이터를 추출하거나 출력할 수 있습니다.
 ```
+
+해결되지 않음
 
 ***
 
 
 ``` python
-# 컬럼바디에서 계속 오류가 나므로 컬럼바디만 가져옴
+# 컬럼바디에서 계속 오류가 나므로 컬럼바디만 가져오기
 
 tbody = soup.select('table > tbody')
 
@@ -482,15 +426,6 @@ for tr in tr_elements:
 
 
 ``` python
-from bs4 import BeautifulSoup
-import requests
-
-# 웹 페이지 URL
-url = "https://www.all-con.co.kr/list/contest/2/1?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg="  # 실제 웹 페이지의 URL로 변경하세요
-
-# 웹 페이지에 접근하여 HTML을 가져옵니다.
-response = requests.get(url)
-
 # BeautifulSoup을 사용하여 HTML을 파싱합니다.
 soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -516,11 +451,6 @@ print("선택된 정렬 기준:", selected_option)
 ``` python
 16 total_count = total_count_element.find_next('span').text.strip()
 
-     19 # 정렬 기준을 가져옵니다.
-
-     20 sortname_select = soup.find('select', id='sortname')
-
-
 
 AttributeError: 'NoneType' object has no attribute 'find_next'
 ```
@@ -531,16 +461,6 @@ AttributeError: 'NoneType' object has no attribute 'find_next' 에러 발생
 
 
 ``` python
-import requests
-from bs4 import BeautifulSoup
-
-url = "https://www.all-con.co.kr/list/contest/2/1?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg="
-headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"}
-
-res = requests.get(url, headers=headers)
-soup = BeautifulSoup(res.text, 'lxml')
-
-
 
 # <table> 태그를 찾아서 가져오기
 table = soup.find('table')
@@ -575,16 +495,6 @@ for tr in tbody.find_all('tr'):
 
 
 ``` python
-import requests
-from bs4 import BeautifulSoup
-
-url = "https://www.all-con.co.kr/list/contest/2/1?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg="
-headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"
-}
-
-res = requests.get(url, headers=headers)
-
 if res.status_code == 200:
     soup = BeautifulSoup(res.text, 'lxml')
     
@@ -756,7 +666,6 @@ driver = webdriver.Chrome(service=service, options=options)
 
 ``` python
 pip3 install webdriver-manager
-
 pip3 install chromedriver_autoinstaller
 ```
 
@@ -860,25 +769,6 @@ print(result)
 ```
 
 
-``` python
-	"name": "ValueError",
-	"message": "5 columns passed, passed data had 1 columns",
-	"stack": "---------------------------------------------------------------------------
-AssertionError                            Traceback (most recent call last)
-
-AssertionError: 5 columns passed, passed data had 1 columns
-
-The above exception was the direct cause of the following exception:
-
-ValueError                                Traceback (most recent call last)
-
-ValueError: 5 columns passed, passed data had 1 columns"
-```
-
-오류 대거 발생...
-
-
-
 #### PermissionError
 ``` python
 "name": "PermissionError",
@@ -894,157 +784,20 @@ PermissionError: [WinError 5] 액세스가 거부되었습니다:
 ```
 
 
-https://mainia.tistory.com/5675  xxxxx
-
 > VSCode를 관리자 권한으로 실행해서 해결
 
 * * *
 
-
-``` python
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-# from selenium.webdriver.common.keys import Keys
-options = webdriver.ChromeOptions()
-options.add_experimental_option("excludeSwitches", ["enable-automation"])
-options.add_experimental_option("useAutomationExtension", False)
-
-import requests
-from bs4 import BeautifulSoup
-
-# import time
-
-from webdriver_manager.chrome import ChromeDriverManager # 크롬드라이버 자동 업데이트
-
-service = ChromeService(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=options)
-
-
-
-
-driver.get("https://www.all-con.co.kr/list/contest/2/1?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=")
-# time.sleep(1)  # ?
-
-# 대기 시간 처리 / 암시적 대기
-driver.implicitly_wait(1) # 1초
-
-
-# Copy full XPath를 활용하여 테이블을 table 변수에 담음
-table = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/table")
-
-# 컬럼 헤더
-# thead = table.find_element(By.TAG_NAME, 'th')
-
-# theadList = []
-
-# for i in range(0,5):
-#     th = thead[i].text
-#     theadList.append(th)
-
-
-# 컬럼 바디
-tbody = table.find_element(By.TAG_NAME, "tbody")
-
-tr_elements = tbody.find_elements(By.TAG_NAME, "tr")
-
-
-rowList = []
-columnList = []
-
-# i = 1
-for index, value in enumerate(tr_elements):
-    
-    # # 태그 가져오기
-    # tag_information = value.find_elements(By.TAG_NAME, "td")[0]
-    # for ind, val in enumerate(tag_information):
-    #     tag = val.find_elements(By.CSS_SELECTOR, "span").text
-        
-    # 타이틀
-    title = value.find_elements(By.TAG_NAME, "td")[0].text
-    # 주최
-    host = value.find_elements(By.TAG_NAME, "td")[1].text
-    # 접수기한
-    date = value.find_elements(By.TAG_NAME, "td")[2].text
-    # 하나의 td class="status" 항목 안에 <br>로 구분 되어 있음
-    # split(엔터)로 분리해서 각각의 항목을 변수에 저장
-    receiving = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[0] # 접수중 여부
-    d_day = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[1] # 남은 디데이
-    ### ongoing = str(receiving(d_day))
-    # 조회수
-    hits = value.find_elements(By.TAG_NAME, "td")[4].text
-    
-    # averageSalary = value.find_elements(By.TAG_NAME, "td")[-1].text.replace("$","").replace(",","")
-    
-    columnList.append([title, host, date, receiving, hits]) ### ongoing (개수 맞춰야됨) # i
-    # rowList.append(columnList)
-    # columnList = []
-    # i += 1 # 랭킹 쓸 때 사용
-    
-print(columnList)
-    
-    
-# ?
-# for row in columnList.iter_rows(max_col=5, values_only=True):
-#     print(row)
-    
-theadList = ['제목', '주최', '기간', '진행상황', '조회수']
-
-# pandas로 저장
-import pandas as pd
-
-result = pd.DataFrame(rowList, columns=theadList) # 바디, 헤더 순서
-print(result)
-```
-
-
-```
-[['미래내일일경험사업 2차 통합공고 청년 신청\n일반인대학생대학원생', '고용노동부, 대한상공회…', '23.07.24~23.09.27', '접수중', '4225'], ['(교육비 무료) 세계 AI 1위에게 배우는 Upstage AI Lab 교육생 모집\n기타', '패스트캠퍼스', '23.08.14~23.09.14', '접수중', '1997'], ['2023 유산 해석·설명 청년 국제 역량강화 참여자 모집N\n\n기타(캠프/강연 등)대학생대학원생', '유네스코 세계유산 국제…', '23.09.01~23.11.01', '접수중', '10'], ['트립코디 서포터즈 1기 모집N\n\n서포터즈·기자단·마케터제한없음', '트립코디', '23.09.13~23.09.26', '접수예정', '29'], ["2023 1ㆍ3세대가 함께 온(溫) 세상을 만드는 '효행교육 페스티벌' 서포터즈 모집N\n\n서포터즈·기자단·마케터제한없음", '대구광역시교육청', '23.09.01~23.09.21', '접수중', '21'], ['홈플러스와 함께하는 ‘2023 두드림 페스티벌’ 자원봉사자 모집N\n\n봉사활동일반인대학생대학원생', '(사)스페셜올림픽코리아…', '23.09.11~23.09.22', '접수중', '31'], ['떡참 프렌즈 1기 모집N\n\n서포터즈·기자단·마케터대학생', '기영에프앤비', '23.09.12~23.09.24', '접수중', '70'], ['신한 커리어업 4기 참가자 모집N\n\n서포터즈·기자단·마케터 외일반인대학생대학원생', '신한은행, 신한금융희망…', '23.09.11~23.10.01', '접수중', '61'], ['제18회 부산불꽃축제 자원봉사자 모집N\n\n봉사활동일반인대학생대학원생', '부산광역시', '23.09.11~23.10.10', '접수중', '50'], ['부산IT교육센터 풀스텍&자바 개발자 취업대비반 수강생 모집N\n\n기타(캠프/강연 등)일반인대학생대학원생', '부산IT교육센터', '23.09.12~23.09.30', '접수중', '41'], ['삼성 갤럭시 스튜디오 캠퍼스 부산대학교 큐레이터 모집N\n\n서포터즈·기자단·마케터대학생기타', '삼성', '23.08.28~23.09.15', '접수중', '63'], ['브랜드저널리즘 콘텐츠크리에이터 2023-4기 모집N\n\n서포터즈·기자단·마케터일반인대학생대학원생', '(주)애드플래닛커뮤니케…', '23.09.12~23.09.21', '접수중', '60'], ['icoop 자연드림 부산권역과 함께하는 굿네이버스 바른환경생활 시즌 6 참가자 모집N\n\n체험단·모니터링·인턴십 외제한없음', '굿네이버스 부산동부지부', '23.09.12~23.10.03', '접수중', '59'], ['d·camp와 함께하는 워크넥트 광주 참여 스타트업 모집N\n\n기타(캠프/강연 등)일반인대학생대학원생', '은행권청년창업재단 d·…', '23.08.31~23.09.18', '접수중', '52'], ["2023 용마폭포문화예술축제 자원봉사자 '용마별' 모집N\n\n봉사활동일반인대학생대학원생", '중랑문화재단', '23.09.08~23.10.05', '접수중', '54']]
-Empty DataFrame
-Columns: [제목, 주최, 기간, 진행상황, 조회수]
-Index: []
-```
-
-값을 잘못 넣긴 했는데
 일단 정상 작동함
 
 
 ``` python
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-
-options = webdriver.ChromeOptions()
-options.add_experimental_option("excludeSwitches", ["enable-automation"])
-options.add_experimental_option("useAutomationExtension", False)
-
-from webdriver_manager.chrome import ChromeDriverManager # 크롬드라이버 자동 업데이트
-
-service = ChromeService(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=options)
-
-
-
-driver.get("https://www.all-con.co.kr/list/contest/2/1?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=")
-
-# 대기 시간 처리 / 암시적 대기
-driver.implicitly_wait(1) # 1초
-
-
-# Copy full XPath를 활용하여 테이블을 table 변수에 담음
-table = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/table")
-
-
 # 컬럼 바디
-tbody = table.find_element(By.TAG_NAME, "tbody")
 
-tr_elements = tbody.find_elements(By.TAG_NAME, "tr")
-
-
+''' rowList=[], columnList=[]를 tbodyList=[]로 수정 '''
 tbodyList = []
 
 for index, value in enumerate(tr_elements):
-        
     # 타이틀
     title = value.find_elements(By.TAG_NAME, "td")[0].text
     # 주최
@@ -1058,20 +811,14 @@ for index, value in enumerate(tr_elements):
     # 조회수
     hits = value.find_elements(By.TAG_NAME, "td")[4].text
     
+    # 수정 전
+    '''
+    columnList.append([title, host, date, receiving, hits]) ### ongoing (개수 맞춰야됨) # i
+    rowList.append(columnList)
+    columnList = []
+    '''
+    # 수정 후
     tbodyList.append([title, host, date, receiving, hits])
-    
-
-
-# 컬럼 헤더
-theadList = ['제목', '주최', '기간', '진행상황', '조회수']
-
-
-
-# pandas로 저장
-import pandas as pd
-
-result = pd.DataFrame(data=tbodyList, columns=theadList) # 바디, 헤더 순서
-print(result)
 ```
 
 
@@ -1177,72 +924,16 @@ from bs4 import BeautifulSoup
 
 
 ``` python
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-
-options = webdriver.ChromeOptions()
-options.add_experimental_option("excludeSwitches", ["enable-automation"])
-options.add_experimental_option("useAutomationExtension", False)
-
-from webdriver_manager.chrome import ChromeDriverManager # 크롬드라이버 자동 업데이트
-
-service = ChromeService(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=options)
-
-
-
-
-driver.get("https://www.all-con.co.kr/list/contest/2/1?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=")
-# time.sleep(1)  # ?
-
-# 대기 시간 처리 / 암시적 대기
-driver.implicitly_wait(1) # 1초
-
-
-# Copy full XPath를 활용하여 테이블을 table 변수에 담음
-table = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/table")
-
-    
-
-# 컬럼 바디
-tbody = table.find_element(By.TAG_NAME, "tbody")
-
-tr_elements = tbody.find_elements(By.TAG_NAME, "tr")
-
-
-tbodyList = []
-
-# i = 1
-for index, value in enumerate(tr_elements):
-    
-    # # 태그 가져오기
-    # tag_information = value.find_elements(By.TAG_NAME, "td")[0]
-    # for ind, val in enumerate(tag_information):
-    #     tag = val.find_elements(By.CSS_SELECTOR, "span").text
-        
-    # 타이틀
-    title = value.find_elements(By.TAG_NAME, "td")[0].text
-    # 주최
-    host = value.find_elements(By.TAG_NAME, "td")[1].text
-    # 접수기한
-    date = value.find_elements(By.TAG_NAME, "td")[2].text
-    # 하나의 td class="status" 항목 안에 <br>로 구분 되어 있음
-    # split(엔터)로 분리해서 각각의 항목을 변수에 저장
-    receiving = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[0] # 접수중 여부
-    d_day = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[1] # 남은 디데이
-    ### ongoing = str(receiving(d_day))
-    # 조회수
-    hits = value.find_elements(By.TAG_NAME, "td")[4].text
-    
-    # averageSalary = value.find_elements(By.TAG_NAME, "td")[-1].text.replace("$","").replace(",","")
-    
-    tbodyList.append([title, host, date, receiving, hits]) ### ongoing (개수 맞춰야됨)
-    
-
 # 컬럼 헤더
-# 이전에 작동 된 코드 가져옴
+# 이전에 작동 된 컬럼 헤더 호출 코드 추가
 
+# 수정 전
+'''
+# print(theadList)
+# theadList = ['제목', '주최', '기간', '진행상황', '조회수']
+'''
+
+# 수정 후
 import requests
 from bs4 import BeautifulSoup
 
@@ -1266,81 +957,10 @@ theadLen = len(thead)
 for i in range(0,theadLen):
     thead = a_list.find_all('th')[i].text
     theadList.append(thead)
-    
-# print(theadList)
-# theadList = ['제목', '주최', '기간', '진행상황', '조회수']
-
-# pandas로 저장
-import pandas as pd
-
-result = pd.DataFrame(data=tbodyList, columns=theadList) # 바디, 헤더 순서
-# result.to_csv('allcon_result_x.xlsx',encoding='utf-8-sig') # 엑셀 파일로 저장
-# result.to_csv('allcon_result_c.csv',index=False,encoding='utf-8-sig') # csv 파일로 저장
-print(result)
 ```
 
-
-                                                   제목             주최   
+정상 작동 하긴 하나,
 <br>
-0                 미래내일일경험사업 2차 통합공고 청년 신청\n일반인대학생대학원생  고용노동부, 대한상공회…  \
-<br>
-1   (교육비 무료) 세계 AI 1위에게 배우는 Upstage AI Lab 교육생 모집\n기타         패스트캠퍼스   
-<br>
-2   2023 유산 해석·설명 청년 국제 역량강화 참여자 모집N\n\n기타(캠프/강연 등...  유네스코 세계유산 국제…   
-<br>
-3                트립코디 서포터즈 1기 모집N\n\n서포터즈·기자단·마케터제한없음           트립코디   
-<br>
-4   2023 1ㆍ3세대가 함께 온(溫) 세상을 만드는 '효행교육 페스티벌' 서포터즈 모...       대구광역시교육청   
-<br>
-5   홈플러스와 함께하는 ‘2023 두드림 페스티벌’ 자원봉사자 모집N\n\n봉사활동일반...  (사)스페셜올림픽코리아…   
-<br>
-6                    떡참 프렌즈 1기 모집N\n\n서포터즈·기자단·마케터대학생         기영에프앤비   
-<br>
-7      신한 커리어업 4기 참가자 모집N\n\n서포터즈·기자단·마케터 외일반인대학생대학원생  신한은행, 신한금융희망…   
-<br>
-8             제18회 부산불꽃축제 자원봉사자 모집N\n\n봉사활동일반인대학생대학원생          부산광역시   
-<br>
-9   부산IT교육센터 풀스텍&자바 개발자 취업대비반 수강생 모집N\n\n기타(캠프/강연 ...       부산IT교육센터   
-<br>
-10  삼성 갤럭시 스튜디오 캠퍼스 부산대학교 큐레이터 모집N\n\n서포터즈·기자단·마케터...             삼성   
-<br>
-11  브랜드저널리즘 콘텐츠크리에이터 2023-4기 모집N\n\n서포터즈·기자단·마케터일반...  (주)애드플래닛커뮤니케…   
-<br>
-12  icoop 자연드림 부산권역과 함께하는 굿네이버스 바른환경생활 시즌 6 참가자 모집...   굿네이버스 부산동부지부 
-<br>
-13  d·camp와 함께하는 워크넥트 광주 참여 스타트업 모집N\n\n기타(캠프/강연 등...  은행권청년창업재단 d·…   
-<br>
-14  2023 용마폭포문화예술축제 자원봉사자 '용마별' 모집N\n\n봉사활동일반인대학생대학원생         중랑문화재단   
-<br>
-<br>
-                   기간  진행상황   조회수  
-<br>                   
-0   23.07.24~23.09.27   접수중  4225  
-<br>
-1   23.08.14~23.09.14   접수중  1997  
-<br>
-2   23.09.01~23.11.01   접수중    10  
-<br>
-3   23.09.13~23.09.26  접수예정    31  
-<br>
-4   23.09.01~23.09.21   접수중    22  
-<br>
-5   23.09.11~23.09.22   접수중    31  
-<br>
-6   23.09.12~23.09.24   접수중    72  
-<br>
-...
-<br>
-11  23.09.12~23.09.21   접수중    60  
-<br>
-12  23.09.12~23.10.03   접수중    59  
-<br>
-13  23.08.31~23.09.18   접수중    52  
-<br>
-14  23.09.08~23.10.05   접수중    54  
-
-
-* * *
 이전에 걸린 시간 12초, bs4를 import해서 컬럼헤더까지 뽑아오는데 걸린 시간 30초 <br>
 => 시간이 너무 많이 걸린다<br>
 <br>
@@ -1352,88 +972,109 @@ print(result)
 
 ### 수정한 코드
 ``` python
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-
-options = webdriver.ChromeOptions()
-options.add_experimental_option("excludeSwitches", ["enable-automation"])
-options.add_experimental_option("useAutomationExtension", False)
-
-from webdriver_manager.chrome import ChromeDriverManager # 크롬드라이버 자동 업데이트
-
-service = ChromeService(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=options)
+# 수정 전
+'''
+import requests
+from bs4 import BeautifulSoup
 
 
-driver.get("https://www.all-con.co.kr/list/contest/2/1?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=")
+url = "https://www.all-con.co.kr/list/contest/2/1?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg="
+headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"}
 
+res = requests.get(url, headers=headers)
+soup = BeautifulSoup(res.text, 'lxml')
 
-# 대기 시간 처리 / 암시적 대기
-driver.implicitly_wait(1) # 1초
+# 올콘 대외활동 페이지는 table 형식으로 정보가 정리돼 있어서 find로 table을 불러옴
+a_list = soup.find('table')
 
+# 컬럼헤더 가져오기
+### 컬럼헤더는 thead 타입 안에 tr > th 타입으로 저장되어 있음
+thead = a_list.find_all('th')
 
-# Copy full XPath를 활용하여 테이블을 table 변수에 담음
-table = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/table")
+theadList = []
 
+theadLen = len(thead)
+for i in range(0,theadLen):
+    thead = a_list.find_all('th')[i].text
+    theadList.append(thead)
+'''
 
-# 컬럼 헤더
+# 수정 후
 thead = table.find_element(By.TAG_NAME, "thead")
 theadList = []
 for i in range(0,5):
     thead_elements = thead.find_elements(By.TAG_NAME, 'th')[i].text
     theadList.append(thead_elements)
-    
-
-# 컬럼 바디
-tbody = table.find_element(By.TAG_NAME, "tbody")
-tr_elements = tbody.find_elements(By.TAG_NAME, "tr")
-
-tbodyList = []
-
-for index, value in enumerate(tr_elements):
-    
-    # 타이틀
-    title = value.find_elements(By.TAG_NAME, "td")[0].text.split("\n")[0].replace("N","")
-     
-    # 주최
-    host = value.find_elements(By.TAG_NAME, "td")[1].text
-    # 접수기한
-    date = value.find_elements(By.TAG_NAME, "td")[2].text
-    # 하나의 td class="status" 항목 안에 <br>로 구분 되어 있음
-    # split(엔터)로 분리해서 각각의 항목을 변수에 저장
-    receiving = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[0] # 접수중 여부
-    d_day = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[1] # 남은 디데이
-    ongoing = receiving + ' / ' + d_day
-    # 조회수
-    hits = value.find_elements(By.TAG_NAME, "td")[4].text
-    
-    # averageSalary = value.find_elements(By.TAG_NAME, "td")[-1].text.replace("$","").replace(",","")
-    
-    tbodyList.append([title, host, date, ongoing, hits])
-    
-
-
-# pandas로 저장
-import pandas as pd
-
-result = pd.DataFrame(data=tbodyList, columns=theadList) # 바디, 헤더 순서
-# result.to_csv('allcon_result_x.xlsx',encoding='utf-8-sig') # 엑셀 파일로 저장
-# result.to_csv('allcon_result_c.csv',index=False,encoding='utf-8-sig') # csv 파일로 저장
-print(result)
 ```
 
 
-* * *
 걸린 시간: 12.4초<br>
 <br>
 수정해야할 것 중에서 <br>
 1.첫번째 column 해결,<br>
-<br>
+
+
+### 제목에서 불필요한 요소 제거
+```python
+# 수정 전
+    '''
+    title = value.find_elements(By.TAG_NAME, "td")[0].text
+    '''
+
+# 수정 후
+    title = value.find_elements(By.TAG_NAME, "td")[0].text.split("\n")[0].replace("N","")
+```
+
 2.두번째 제목 해결<br>
+    - 불필요한 N, 불필요한 태그(ex 기타, 대학생 ...) 제거
 2.두번째 태그 - column 쓸 게 딱히 마땅이 없어서 제외 > 해결<br>
 <br>
+
+
+### 문자열 결합
+
+```python
+# 수정 전
+'''
+    # 하나의 td class="status" 항목 안에 <br>로 구분 되어 있음
+    # split(엔터)로 분리해서 각각의 항목을 변수에 저장
+    receiving = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[0] # 접수중 여부
+    d_day = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[1] # 남은 디데이
+    ### ongoing = str(receiving(d_day))
+'''
+
+# 수정 후
+    receiving = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[0] # 접수중 여부
+    d_day = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[1] # 남은 디데이
+    ongoing = receiving + ' / ' + d_day
+
+    # ongoing 출력
+    tbodyList.append([title, host, date, ongoing, hits])
+```
+
 4.https://zephyrus1111.tistory.com/290 < 문자열 결합 >>> 해결<br>
+<br>
+
+
+* * * 
+~~### 추가한 것~~
+<br>
+
+~~1. 출력 개수 사용자 조절~~
+~~y = int(input("출력하고 싶은 대외활동의 개수를 쓰시오.: "))~~
+~~for index, value in enumerate(tr_elements[:y]):~~
+
+~~다만 한 페이지에 담겨 있는 대외활동 수인 15개로 제한됨.~~
+
+~~# for문 안에서 변수 생성 테스트~~
+
+~~for i in range(1, 5):~~
+    ~~globals()["a{}".format(i)] = i~~
+    ~~print(a{i})~~
+
+사용X
+
+<br>
 <br>
 
 ### 여전히 수정해야하는 사항 
@@ -1443,120 +1084,8 @@ print(result)
 페이지에 들어가보면 누를 수 있는 페이지가 30페이지까지 있음<br>
 => 출력하고 싶은 페이지까지 출력할 수 있게 코드 작성<br>
 <br>
-
-> #### 5. 기타사항
-import requests<br>
-from bs4 import BeautifulSoup<br>
-현재로는 사용 X<br>
-
-
-***
-### 페이지 넘김, 데이터 병합을 수행하는 코드
-
-
-``` python
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-
-options = webdriver.ChromeOptions()
-options.add_experimental_option("excludeSwitches", ["enable-automation"])
-options.add_experimental_option("useAutomationExtension", False)
-
-from webdriver_manager.chrome import ChromeDriverManager # 크롬드라이버 자동 업데이트
-
-service = ChromeService(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=options)
-
-
-import pandas as pd
-
-# 전역변수 선언
-global result
-
-# 데이터를 병합해주는 함수
-
-def concat(a):
-    result = pd.concat([result, a])
-    return
-
-number = int(input("출력하고 싶은 대외활동의 페이지 수를 쓰시오.(최대 30): "))
-for i in range(1,number+1):
-    driver.get(f"https://www.all-con.co.kr/list/contest/2/{i}?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=")
-
-
-    # 대기 시간 처리 / 암시적 대기
-    driver.implicitly_wait(1) # 1초
-
-
-    # Copy full XPath를 활용하여 테이블을 table 변수에 담음
-    table = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/table")
-
-
-    # 컬럼 헤더
-    thead = table.find_element(By.TAG_NAME, "thead")
-    theadList = []
-    for i in range(0,5):
-        thead_elements = thead.find_elements(By.TAG_NAME, 'th')[i].text
-        theadList.append(thead_elements)
-        
-
-    # 컬럼 바디
-    tbody = table.find_element(By.TAG_NAME, "tbody")
-    tr_elements = tbody.find_elements(By.TAG_NAME, "tr")
-
-    tbodyList = []
-
-
-    for index, value in enumerate(tr_elements):
-        
-        # 타이틀
-        title = value.find_elements(By.TAG_NAME, "td")[0].text.split("\n")[0].replace("N","")
-        
-        # 주최
-        host = value.find_elements(By.TAG_NAME, "td")[1].text
-        # 접수기한
-        date = value.find_elements(By.TAG_NAME, "td")[2].text
-        # 하나의 td class="status" 항목 안에 <br>로 구분 되어 있음
-        # split(엔터)로 분리해서 각각의 항목을 변수에 저장
-        receiving = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[0] # 접수중 여부
-        d_day = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[1] # 남은 디데이
-        ongoing = receiving + ' / ' + d_day
-        # 조회수
-        hits = value.find_elements(By.TAG_NAME, "td")[4].text
-        
-        # averageSalary = value.find_elements(By.TAG_NAME, "td")[-1].text.replace("$","").replace(",","")
-        
-        tbodyList.append([title, host, date, ongoing, hits])
-    
-
-
-    # pandas로 저장
-    
-    # 전역변수 선언
-        globals()["a{}".format(i)] = pd.DataFrame(data=tbodyList, columns=theadList)
-        concat(["a{}".format(i)])
-    # result.to_csv('allcon_result_x.xlsx',encoding='utf-8-sig') # 엑셀 파일로 저장
-    # result.to_csv('allcon_result_c.csv',index=False,encoding='utf-8-sig') # csv 파일로 저장
-    
-
-print(result)
-```
-
-에러 발생
-
-``` python
-     <a href='vscode-notebook-cell:/c%3A/Users/jiyun/Desktop/aaaaa_a_a_a_a_a.ipynb#X41sZmlsZQ%3D%3D?line=21'>22</a> def concat(a):
----> <a href='vscode-notebook-cell:/c%3A/Users/jiyun/Desktop/aaaaa_a_a_a_a_a.ipynb#X41sZmlsZQ%3D%3D?line=22'>23</a>     result = pd.concat([result, a])
-     <a href='vscode-notebook-cell:/c%3A/Users/jiyun/Desktop/aaaaa_a_a_a_a_a.ipynb#X41sZmlsZQ%3D%3D?line=23'>24</a>     return
-
-UnboundLocalError: cannot access local variable 'result' where it is not associated with a value"
-}
-```
-
-
 * * *
-주의사항
+#### 주의사항
 1. 페이지 넘기면 맨 위의 대외활동 2개는 모든 페이지에서 똑같음 => 중복 제거
 2. 페이지 넘기면 사이트 링크 바뀜
 <br>
@@ -1574,56 +1103,22 @@ for문마다 변수를 돌려서 각각의 데이터프레임에 저장한 후 �
 https://trustyou.tistory.com/197 <<<
 <br>
 https://muzukphysics.tistory.com/225 <<< for문 안에서 변하는 변수 만드는 방법 (2개)
-
-* * * 
-~~### 추가한 것~~
+<br>
 <br>
 
-~~1. 출력 개수 사용자 조절~~
-``` python
-y = int(input("출력하고 싶은 대외활동의 개수를 쓰시오.: "))
-for index, value in enumerate(tr_elements[:y]):
-```
-
-~~다만 한 페이지에 담겨 있는 대외활동 수인 15개로 제한됨.~~
-
-
-``` python
-# for문 안에서 변수 생성 테스트
-
-for i in range(1, 5):
-    globals()["a{}".format(i)] = i
-    print(a{i})
-```
-~~사용X~~
+> #### 5. 기타사항
+import requests<br>
+from bs4 import BeautifulSoup<br>
+현재로는 사용 X<br>
 
 
 ***
-
+### 페이지 넘김, 데이터 병합을 수행하는 코드
 
 ``` python
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-
-options = webdriver.ChromeOptions()
-options.add_experimental_option("excludeSwitches", ["enable-automation"])
-options.add_experimental_option("useAutomationExtension", False)
-
-from webdriver_manager.chrome import ChromeDriverManager # 크롬드라이버 자동 업데이트
-
-service = ChromeService(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=options)
-
-
-import pandas as pd
-
-# 전역변수 선언
-global result
-result = pd.DataFrame()
+# 추가된 부분
 
 # 데이터를 병합해주는 함수
-
 def concat(a):
     result = pd.concat([result, a])
     return
@@ -1633,196 +1128,103 @@ for i in range(1,number+1):
     driver.get(f"https://www.all-con.co.kr/list/contest/2/{i}?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=")
 
 
-    # 대기 시간 처리 / 암시적 대기
-    driver.implicitly_wait(1) # 1초
+
+# 수정한 부분
+
+    # 수정 전
+    '''
+    # pandas로 저장
+    import pandas as pd
+
+    result = pd.DataFrame(rowList, columns=theadList) # 바디, 헤더 순서
+    print(result)
+    '''
 
 
-    # Copy full XPath를 활용하여 테이블을 table 변수에 담음
-    table = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/table")
-
-
-    # 컬럼 헤더
-    thead = table.find_element(By.TAG_NAME, "thead")
-    theadList = []
-    for i in range(0,5):
-        thead_elements = thead.find_elements(By.TAG_NAME, 'th')[i].text
-        theadList.append(thead_elements)
-        
-
-    # 컬럼 바디
-    tbody = table.find_element(By.TAG_NAME, "tbody")
-    tr_elements = tbody.find_elements(By.TAG_NAME, "tr")
-
-    tbodyList = []
-
-
-    for index, value in enumerate(tr_elements):
-        
-        # 타이틀
-        title = value.find_elements(By.TAG_NAME, "td")[0].text.split("\n")[0].replace("N","")
-        
-        # 주최
-        host = value.find_elements(By.TAG_NAME, "td")[1].text
-        # 접수기한
-        date = value.find_elements(By.TAG_NAME, "td")[2].text
-        # 하나의 td class="status" 항목 안에 <br>로 구분 되어 있음
-        # split(엔터)로 분리해서 각각의 항목을 변수에 저장
-        receiving = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[0] # 접수중 여부
-        d_day = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[1] # 남은 디데이
-        ongoing = receiving + ' / ' + d_day
-        # 조회수
-        hits = value.find_elements(By.TAG_NAME, "td")[4].text
-        
-        
-        tbodyList.append([title, host, date, ongoing, hits])
-    
-
+    # 수정 후
 
     # pandas로 저장
-    
-    # 전역변수 선언
-    if i == 1:
-        result = pd.DataFrame(data=tbodyList, columns=theadList) # 바디, 헤더 순서
-    if i != 1:
-        a = pd.DataFrame(data=tbodyList, columns=theadList)
-        concat(a)
-    # result.to_csv('allcon_result_x.xlsx',encoding='utf-8-sig') # 엑셀 파일로 저장
-    # result.to_csv('allcon_result_c.csv',index=False,encoding='utf-8-sig') # csv 파일로 저장
-    
 
+    # 전역변수 선언
+        globals()["a{}".format(i)] = pd.DataFrame(data=tbodyList, columns=theadList)
+        concat(["a{}".format(i)])
+    
 print(result)
 ```
 
+에러 발생
 
-ㄴ 변수가 선언되지 않은 오류 발생
+> concat(["a{}".format(i)]) 
+> 이 부분 코드가 제대로 안 먹히는 오류
 
+<br>
+<br>
 
-``` python
----> 85         concat(a)
+### 수정
 
-     23 def concat(a):
----> 24     result = pd.concat([result, a])
-     25     return
-
-UnboundLocalError: cannot access local variable 'result' where it is not associated with a value
-```
-
-
-***
-
-### result 초기화, 선언으로 해결
-
-
+https://passwd.tistory.com/entry/Python-Pandas-%EB%B0%98%EB%B3%B5%EB%AC%B8%EC%9C%BC%EB%A1%9C-DataFrame-%ED%95%A9%EC%B9%98%EA%B8%B0<br>
+^^^ 반복문으로 DataFrame 합치기<br>
 
 ``` python
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
+# 수정 전
+'''
+# 전역변수 선언
+        globals()["a{}".format(i)] = pd.DataFrame(data=tbodyList, columns=theadList)
+        concat(["a{}".for
+'''
 
-options = webdriver.ChromeOptions()
-options.add_experimental_option("excludeSwitches", ["enable-automation"])
-options.add_experimental_option("useAutomationExtension", False)
-
-from webdriver_manager.chrome import ChromeDriverManager # 크롬드라이버 자동 업데이트
-
-service = ChromeService(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=options)
-
-
-import pandas as pd
-
-
-# result 초기화, 선언
-result = pd.DataFrame()
-
-# 데이터를 병합해주는 함수
-def concat(a):
-    # 전역변수 선언
-    global result
-    result = pd.concat([result, a])
-    return
-
-number = int(input("출력하고 싶은 대외활동의 페이지 수를 쓰시오.(최대 30): "))
-for i in range(1,number+1):
-    driver.get(f"https://www.all-con.co.kr/list/contest/2/{i}?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=")
-
-
-    # 대기 시간 처리 / 암시적 대기
-    driver.implicitly_wait(1) # 1초
-
-
-    # Copy full XPath를 활용하여 테이블을 table 변수에 담음
-    table = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/table")
-
-
-    # 컬럼 헤더
-    thead = table.find_element(By.TAG_NAME, "thead")
-    theadList = []
-    for i in range(0,5):
-        thead_elements = thead.find_elements(By.TAG_NAME, 'th')[i].text
-        theadList.append(thead_elements)
-        
-
-    # 컬럼 바디
-    tbody = table.find_element(By.TAG_NAME, "tbody")
-    tr_elements = tbody.find_elements(By.TAG_NAME, "tr")
-
-    tbodyList = []
-
-
-    for index, value in enumerate(tr_elements):
-        
-        # 타이틀
-        title = value.find_elements(By.TAG_NAME, "td")[0].text.split("\n")[0].replace("N","")
-        
-        # 주최
-        host = value.find_elements(By.TAG_NAME, "td")[1].text
-        # 접수기한
-        date = value.find_elements(By.TAG_NAME, "td")[2].text
-        # 하나의 td class="status" 항목 안에 <br>로 구분 되어 있음
-        # split(엔터)로 분리해서 각각의 항목을 변수에 저장
-        receiving = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[0] # 접수중 여부
-        d_day = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[1] # 남은 디데이
-        ongoing = receiving + ' / ' + d_day
-        # 조회수
-        hits = value.find_elements(By.TAG_NAME, "td")[4].text
-        
-        # averageSalary = value.find_elements(By.TAG_NAME, "td")[-1].text.replace("$","").replace(",","")
-        
-        tbodyList.append([title, host, date, ongoing, hits])
-    
-
-
-    # pandas로 저장
-    
+# 수정 후
+``` python
     if i == 1:
         result = pd.DataFrame(data=tbodyList, columns=theadList) # 바디, 헤더 순서
     if i != 1:
         # globals()['a{}'.format(i)] = pd.DataFrame(data=tbodyList, columns=theadList)
         a = pd.DataFrame(data=tbodyList, columns=theadList)
         concat(a)
-    # result.to_csv('allcon_result_x.xlsx',encoding='utf-8-sig') # 엑셀 파일로 저장
-    # result.to_csv('allcon_result_c.csv',index=False,encoding='utf-8-sig') # csv 파일로 저장
-    
-
-print(result)
-result.to_csv('allcon_result_x.xls',encoding='utf-8-sig')
 ```
 
+<br>
 
-* * *
-https://passwd.tistory.com/entry/Python-Pandas-%EB%B0%98%EB%B3%B5%EB%AC%B8%EC%9C%BC%EB%A1%9C-DataFrame-%ED%95%A9%EC%B9%98%EA%B8%B0<br>
-^^^ 반복문으로 DataFrame 합치기<br>
-<br>
-전역 변수 선언, 반복문으로 DataFrame 합치는 것까지 완료<br>
-<br>
-<br>
+에러 발생
+``` python
+UnboundLocalError: cannot access local variable 'result' where it is not associated with a value"
+}
+```
+> 문제
+전역변수 result가 제대로 선언되지 않은 문제
+
+> 해결방법
+concat 함수 전에 result를 선언해주어 해결
+
+``` python
+# 수정 전
+
+'''
+# 데이터를 병합해주는 함수
+def concat(a):
+    result = pd.concat([result, a])
+    return
+'''
+
+
+# 수정 후
+
+global result # result 초기화, 선언으로 해결
+
+# 데이터를 병합해주는 함수
+def concat(a):
+    result = pd.concat([result, a])
+    return
+```
+
 
 * * *
 
 ### 해야하는 것
 
 ~~1. 출력할 대외활동 광고? 개수 입력 받고 > 거기에 맞춰서 페이지 로드 , 출력~~
+<br>
+-> 개수보다 페이지 수로 하는 게 더 효과적일 것 같음
 
 <br>
 
@@ -1832,357 +1234,63 @@ https://passwd.tistory.com/entry/Python-Pandas-%EB%B0%98%EB%B3%B5%EB%AC%B8%EC%9C
 3. 본문 웹페이지 링크 출력
 
 
+### 중복 제거
+
 ``` python
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-
-options = webdriver.ChromeOptions()
-options.add_experimental_option("excludeSwitches", ["enable-automation"])
-options.add_experimental_option("useAutomationExtension", False)
-
-from webdriver_manager.chrome import ChromeDriverManager # 크롬드라이버 자동 업데이트
-
-service = ChromeService(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=options)
-
-
-import pandas as pd
-
-
-# result 초기화, 선언
-result = pd.DataFrame()
-
-# 데이터를 병합해주는 함수
-def concat(a):
-    # 전역변수 선언
-    global result
-    result = pd.concat([result, a])
-    return
-
-number = int(input("출력하고 싶은 대외활동의 페이지 수를 쓰시오.(최대 30): "))
-for i in range(1,number+1):
-    driver.get(f"https://www.all-con.co.kr/list/contest/2/{i}?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=")
-
-
-    # 대기 시간 처리 / 암시적 대기
-    driver.implicitly_wait(1) # 1초
-
-
-    # Copy full XPath를 활용하여 테이블을 table 변수에 담음
-    table = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/table")
-
-
-    # 컬럼 헤더
-    thead = table.find_element(By.TAG_NAME, "thead")
-    theadList = []
-    for i in range(0,5):
-        thead_elements = thead.find_elements(By.TAG_NAME, 'th')[i].text
-        theadList.append(thead_elements)
-        
-
-    # 컬럼 바디
-    tbody = table.find_element(By.TAG_NAME, "tbody")
-    tr_elements = tbody.find_elements(By.TAG_NAME, "tr")
-
-    tbodyList = []
-
-
-    for index, value in enumerate(tr_elements):
-        
-        # 타이틀
-        title = value.find_elements(By.TAG_NAME, "td")[0].text.split("\n")[0].replace("N","")
-        
-        # 주최
-        host = value.find_elements(By.TAG_NAME, "td")[1].text
-        # 접수기한
-        date = value.find_elements(By.TAG_NAME, "td")[2].text
-        # 하나의 td class="status" 항목 안에 <br>로 구분 되어 있음
-        # split(엔터)로 분리해서 각각의 항목을 변수에 저장
-        receiving = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[0] # 접수중 여부
-        d_day = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[1] # 남은 디데이
-        ongoing = receiving + ' / ' + d_day
-        # 조회수
-        hits = value.find_elements(By.TAG_NAME, "td")[4].text
-        
-        # averageSalary = value.find_elements(By.TAG_NAME, "td")[-1].text.replace("$","").replace(",","")
-        
-        tbodyList.append([title, host, date, ongoing, hits])
-    
-
-
-    # pandas로 저장
-    
-    if i == 1:
-        result = pd.DataFrame(data=tbodyList, columns=theadList) # 바디, 헤더 순서
-    if i != 1:
-        # globals()['a{}'.format(i)] = pd.DataFrame(data=tbodyList, columns=theadList)
-        a = pd.DataFrame(data=tbodyList, columns=theadList)
-        concat(a)
-    # result.to_csv('allcon_result_x.xlsx',encoding='utf-8-sig') # 엑셀 파일로 저장
-    # result.to_csv('allcon_result_c.csv',index=False,encoding='utf-8-sig') # csv 파일로 저장
-    
-# 중복제거 
 result_finish = result.drop_duplicates()
-
-# 엑셀 파일로 저장
-result_finish.to_csv('allcon_result_x.xls',encoding='utf-8-sig')
-
-# print(result_finish)
 ```
 
+> 해결
+result DataFrame의 중복을 제거하여 result_finish에 저장해서 해결
 
-~~1. 출력할 대외활동 광고? 개수 입력 받고 > 거기에 맞춰서 페이지 로드 , 출력~~ 
-#### 개수보다 페이지 수로 하는 게 더 효과적일 것 같음
-
-
-~~2. 중복 제거~~
-#### 완료
-
-<br>
 
 ***
 ### 본문 웹페이지 링크 가져오기
 
-
 ``` python
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-
-options = webdriver.ChromeOptions()
-options.add_experimental_option("excludeSwitches", ["enable-automation"])
-options.add_experimental_option("useAutomationExtension", False)
-
-from webdriver_manager.chrome import ChromeDriverManager # 크롬드라이버 자동 업데이트
-
-service = ChromeService(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=options)
-
-
-import pandas as pd
-
-
-# result 초기화, 선언
-result = pd.DataFrame()
-
-# 데이터를 병합해주는 함수
-def concat(a):
-    # 전역변수 선언
-    global result
-    result = pd.concat([result, a])
-    return
-
-number = int(input("출력하고 싶은 대외활동의 페이지 수를 쓰시오.(최대 30): "))
-for i in range(1,number+1):
-    driver.get(f"https://www.all-con.co.kr/list/contest/2/{i}?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=")
-
-
-    # 대기 시간 처리 / 암시적 대기
-    driver.implicitly_wait(1) # 1초
-
-
-    # Copy full XPath를 활용하여 테이블을 table 변수에 담음
-    table = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/table")
-
-
-    # 컬럼 헤더
-    thead = table.find_element(By.TAG_NAME, "thead")
-    theadList = []
-    for i in range(0,5):
-        thead_elements = thead.find_elements(By.TAG_NAME, 'th')[i].text
-        theadList.append(thead_elements)
-    # 웹페이지에 없는 column 추가
-    theadList.append("본문 링크")
-        
-
-    # 컬럼 바디
-    tbody = table.find_element(By.TAG_NAME, "tbody")
-    tr_elements = tbody.find_elements(By.TAG_NAME, "tr")
-
-    tbodyList = []
-
-
     for index, value in enumerate(tr_elements):
         
-        # 타이틀
-        title = value.find_elements(By.TAG_NAME, "td")[0].text.split("\n")[0].replace("N","")
-        
-        # 주최
-        host = value.find_elements(By.TAG_NAME, "td")[1].text
-        # 접수기한
-        date = value.find_elements(By.TAG_NAME, "td")[2].text
-        # 하나의 td class="status" 항목 안에 <br>로 구분 되어 있음
-        # split(엔터)로 분리해서 각각의 항목을 변수에 저장
-        receiving = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[0] # 접수중 여부
-        d_day = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[1] # 남은 디데이
-        ongoing = receiving + ' / ' + d_day
-        # 조회수
-        hits = value.find_elements(By.TAG_NAME, "td")[4].text
         # 본문 링크
         link_on = value.find_elements(By.TAG_NAME, "a")
         link = link_on.get_attribute("href")
         
-        # averageSalary = value.find_elements(By.TAG_NAME, "td")[-1].text.replace("$","").replace(",","")
         
         tbodyList.append([title, host, date, ongoing, hits, link])
-    
-
-
-    # pandas로 저장
-    
-    if i == 1:
-        result = pd.DataFrame(data=tbodyList, columns=theadList) # 바디, 헤더 순서
-    if i != 1:
-        a = pd.DataFrame(data=tbodyList, columns=theadList)
-        concat(a)
-    # result.to_csv('allcon_result_x.xlsx',encoding='utf-8-sig') # 엑셀 파일로 저장
-    # result.to_csv('allcon_result_c.csv',index=False,encoding='utf-8-sig') # csv 파일로 저장
-    
-# 중복제거 
-result_finish = result.drop_duplicates()
-
-# 엑셀 파일로 저장
-result_finish.to_csv('allcon_result_x.xls',encoding='utf-8-sig')
-
-# print(result_finish)
 ```
 
-
+> 오류 발생
 ``` python
----> 76 link = link_on.get_attribute("href")
-     78 # averageSalary = value.find_elements(By.TAG_NAME, "td")[-1].text.replace("$","").replace(",","")
-     80 tbodyList.append([title, host, date, ongoing, hits, link])
-
 AttributeError: 'list' object has no attribute 'get_attribute'
 ```
 
-
-***
-
-
+> 문제
 ``` python
 link_on = value.find_elements(By.TAG_NAME, "a")
 link = link_on.get_attribute("href")
 ```
 
-
 이 부분에서 두 번째 줄 get_attribute가 동작하지 않는다
 <br>
 <br>
-<br>
+
+> 해결 방안
 한 줄로 코드 수정
 
 
 ``` python
+# 수정 전
+'''
+link_on = value.find_elements(By.TAG_NAME, "a")
+link_on.get_attribute("href")
+'''
+
+# 수정 후
 link = value.find_element(By.TAG_NAME, "a").get_attribute('href')
 ```
 
-
-### 아래는 수정한 코드
-
-
-``` python
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-
-options = webdriver.ChromeOptions()
-options.add_experimental_option("excludeSwitches", ["enable-automation"])
-options.add_experimental_option("useAutomationExtension", False)
-
-from webdriver_manager.chrome import ChromeDriverManager # 크롬드라이버 자동 업데이트
-
-service = ChromeService(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=options)
-
-
-import pandas as pd
-
-
-# result 초기화, 선언
-result = pd.DataFrame()
-
-# 데이터를 병합해주는 함수
-def concat(a):
-    # 전역변수 선언
-    global result
-    result = pd.concat([result, a])
-    return
-
-number = int(input("출력하고 싶은 대외활동의 페이지 수를 쓰시오.(최대 30): "))
-for i in range(1,number+1):
-    driver.get(f"https://www.all-con.co.kr/list/contest/2/{i}?sortname=cl_order&sortorder=asc&stx=&sfl=&t=2&ct=&sc=&tg=")
-
-
-    # 대기 시간 처리 / 암시적 대기
-    driver.implicitly_wait(1) # 1초
-
-
-    # Copy full XPath를 활용하여 테이블을 table 변수에 담음
-    table = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/table")
-
-
-    # 컬럼 헤더
-    thead = table.find_element(By.TAG_NAME, "thead")
-    theadList = []
-    for i in range(0,5):
-        thead_elements = thead.find_elements(By.TAG_NAME, 'th')[i].text
-        theadList.append(thead_elements)
-    # 웹페이지에 없는 column 추가
-    theadList.append("본문 링크")
-        
-
-    # 컬럼 바디
-    tbody = table.find_element(By.TAG_NAME, "tbody")
-    tr_elements = tbody.find_elements(By.TAG_NAME, "tr")
-
-    tbodyList = []
-
-
-    for index, value in enumerate(tr_elements):
-        
-        # 타이틀
-        title = value.find_elements(By.TAG_NAME, "td")[0].text.split("\n")[0].replace("N","")
-        
-        # 주최
-        host = value.find_elements(By.TAG_NAME, "td")[1].text
-        # 접수기한
-        date = value.find_elements(By.TAG_NAME, "td")[2].text
-        # 하나의 td class="status" 항목 안에 <br>로 구분 되어 있음
-        # split(엔터)로 분리해서 각각의 항목을 변수에 저장
-        receiving = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[0] # 접수중 여부
-        d_day = value.find_elements(By.TAG_NAME, "td")[3].text.split("\n")[1] # 남은 디데이
-        ongoing = receiving + ' / ' + d_day
-        # 조회수
-        hits = value.find_elements(By.TAG_NAME, "td")[4].text
-        # 본문 링크
-        link = value.find_element(By.TAG_NAME, "a").get_attribute('href')
-        
-        # averageSalary = value.find_elements(By.TAG_NAME, "td")[-1].text.replace("$","").replace(",","")
-        
-        tbodyList.append([title, host, date, ongoing, hits, link])
-    
-
-
-    # pandas로 저장
-    
-    if i == 1:
-        result = pd.DataFrame(data=tbodyList, columns=theadList) # 바디, 헤더 순서
-    if i != 1:
-        a = pd.DataFrame(data=tbodyList, columns=theadList)
-        concat(a)
-    # result.to_csv('allcon_result_x.xlsx',encoding='utf-8-sig') # 엑셀 파일로 저장
-    # result.to_csv('allcon_result_c.csv',index=False,encoding='utf-8-sig') # csv 파일로 저장
-    
-# 중복제거 
-result_finish = result.drop_duplicates()
-
-# 엑셀 파일로 저장
-result_finish.to_csv('allcon_result_x.xls',encoding='utf-8-sig')
-
-# print(result_finish)
-```
-
+<br>
+<br>
+<br>
+<br>
 
 성공~~~

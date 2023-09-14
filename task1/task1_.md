@@ -45,7 +45,28 @@ XHR(XMLHttpRequest) 요청은 "XHR" 또는 "XMLHttpRequest"로 표시되며, Fet
 ### Selenium
 - [[Python] Selenium4 초기 설정 & 크롬 드라이버 자동 설치](https://velog.io/@hyosss/PYTHON-Selenium4-%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84-%EC%84%A4%EC%A0%95)
 - Selenium4 설치(+크롬 웹 드라이버 다운로드)와 기본설정을 참고하였다.
+#### 기본 세팅
+``` python
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.common.by import By
+options = webdriver.ChromeOptions()
+options.add_experimental_option("excludeSwitches", ["enable-automation"])
+options.add_experimental_option("useAutomationExtension", False)
 
+
+from webdriver_manager.chrome import ChromeDriverManager
+
+
+service = ChromeService(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service, options=options)
+```
+
+#### 다운로드
+``` javascript
+pip3 install webdriver-manager
+pip3 install chromedriver_autoinstaller
+```
 ***
 
 ### 아래 두 개의 코드를 참고하여 3차 코드 작성.
@@ -80,16 +101,6 @@ By. 뒤쪽의 명령어를 구분하여 사용하는 예시를 참고하였다.
 
 참고 코드
 ``` javascript
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager  # 크롬드라이버 자동업데이트
-import time
-import openpyxl
-
-
-
 i = 1
 
 rows = tbody.find_elements(By.TAG_NAME, "tr")
@@ -116,7 +127,7 @@ for index, value in enumerate(rows):
 
 ## 3. 목표 사이트를 접근하기 위해서 수정한 코드 설명(Trial and Error)
 
-[task1_trial&error파일]에 작성해두었습니다.
+[task1_trial&error파일](https://github.com/gorodog/Task/blob/main/task1/task1_trial%26error.md)에 작성해두었습니다.
 
 
 <br>
@@ -124,17 +135,17 @@ for index, value in enumerate(rows):
 <br>
 
 ## 4. 최종 DataFrame에 넣고, 저장
-``` javascript
+``` python
 import pandas as pd
 
-// DataFrame에 넣기
+# DataFrame에 넣기
 file = pd.DataFrame(activity_data)
 
-// 텍스트 파일로 저장
+# 텍스트 파일로 저장
 file.to_csv('대외활동_리스트.txt')
-// 엑셀 파일로 저장
+# 엑셀 파일로 저장
 result.to_csv('allcon_result_x.xls',encoding='utf-8-sig') 
-// csv 파일로 저장
+# csv 파일로 저장
 result.to_csv('allcon_result_c.csv',index=False,encoding='utf-8-sig') 
 ```
 
