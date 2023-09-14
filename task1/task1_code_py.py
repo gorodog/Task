@@ -93,6 +93,6 @@ for i in range(1,number+1):
 result_finish = result.drop_duplicates()
 
 # 엑셀 파일로 저장
-result_finish.to_csv('allcon_result_x.xls',encoding='utf-8-sig')
+# result_finish.to_csv('allcon_result_x.xls',encoding='utf-8-sig')
 
-# print(result_finish)
+print(result_finish)

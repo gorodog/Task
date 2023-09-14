@@ -116,7 +116,7 @@ for index, value in enumerate(rows):
 
 ## 3. 목표 사이트를 접근하기 위해서 수정한 코드 설명(Trial and Error)
 
-[task1_trial_and_error파일](https://github.com/gorodog/Task/blob/main/task1_trial_and_error.ipynb)에 작성해두었습니다.
+[task1_trial&error파일]에 작성해두었습니다.
 
 
 <br>
