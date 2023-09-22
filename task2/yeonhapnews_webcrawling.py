@@ -9,10 +9,6 @@ options.add_experimental_option("useAutomationExtension", False)
 from webdriver_manager.chrome import ChromeDriverManager # 크롬드라이버 자동 업데이트
 
 
-from bs4 import BeautifulSoup
-import requests
-import re
-
 
 service = ChromeService(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=options)
@@ -60,6 +56,7 @@ for news_element in news_elements:
 
 from bs4 import BeautifulSoup
 import requests
+import re
 
 
 # ConnectionError방지
@@ -90,12 +87,14 @@ for i in href_List:
     # 기사 텍스트만 가져오기
     # list합치기
     # 수정 필요
-    content = ''.join(str(content))
+    # content = ''.join(str(content))
+    content = ''.join([content_t.get_text() for content_t in content]) 
     
     #html태그제거 및 텍스트 다듬기
     content = re.sub(pattern=pattern1,repl='',string=content)
     pattern2 = """[\n\n\n\n\n// flash 오류를 우회하기 위한 함수 추가\nfunction _flash_removeCallback() {}"""
     content = content.replace(pattern2,'')
+    content = content.replace("\n",'.')
 
     # contents.append(content)
     
@@ -110,4 +109,4 @@ import pandas as pd
 
 result = pd.DataFrame(data=t_c, columns=column_List) 
 # 인덱스 정보 제외하고 저장
-result.to_csv('ave_task2_crawling_content.csv', index = None)
+result.to_csv('save_t.csv', index = None)
