@@ -1,6 +1,6 @@
 chroma DB를 활용하여 텍스트를 색인 & 검색하는 코드
 
-### 설명
+## 설명
 - txt 파일 대신 pdf 파일 색인
 - pdf 파일: DBpia 컴퓨터 분야 논문 22개
 
@@ -13,8 +13,8 @@ chroma DB를 활용하여 텍스트를 색인 & 검색하는 코드
 
 ***
 
-### 텍스트 분할
-#### 1. RecursiveCharacterTextSplitter
+## 텍스트 분할
+### 1. RecursiveCharacterTextSplitter
 
 <br/>
 
@@ -26,7 +26,7 @@ chroma DB를 활용하여 텍스트를 색인 & 검색하는 코드
 
 <br/>
 
-#### 2. CharacterTextSplitter
+### 2. CharacterTextSplitter
 
 <br/>
 
@@ -38,13 +38,13 @@ chroma DB를 활용하여 텍스트를 색인 & 검색하는 코드
 
 ***
 
-### Embedding
+## Embedding
 
 - Embedding 쪽을 바꿔야 성능이 잘 나올 것 같아서 여러 개의 Embedding을 사용해보려고 시도 중(OpenAI 제외)
 
 <br/>
 
-#### 1. InstructorEmbedding
+### 1. InstructorEmbedding
 
 <br/>
 
@@ -61,7 +61,7 @@ instructor_embeddings = HuggingFaceEmbeddings(model_name="hkunlp/instructor-xl")
 
 <br/>
 
-#### 2. LlamaCppEmbedding
+### 2. LlamaCppEmbedding
 
 <br/>
 
@@ -76,7 +76,7 @@ model_path부분에서 오류 발생
 
 <br/>
 
-#### 3. intfloat/multilingual-e5-largeEmbedding
+### 3. intfloat/multilingual-e5-largeEmbedding
 
 <br/>
 
@@ -88,7 +88,7 @@ intfloat/multilingual-e5-large Embedding 모델은 94개국어의 텍스트를 �
 
 <br/>
 
-#### 4. word2vec / fastText
+### 4. word2vec / fastText
 
 <br/>
 
@@ -135,7 +135,7 @@ https://www.pinecone.io/learn/
 
 ***
 
-### 코드
+## 코드
 
 ``` python
 !pip install langchain unstructured openai chromadb Cython tiktoken pypdf
@@ -216,11 +216,11 @@ docs = db.similarity_search(query)
 docs[:5]
 ```
 
-### 실행 결과
+## 실행 결과
 
 ***
 
-#### 1. HuggingFaceEmbedding()
+### 1. HuggingFaceEmbedding()
 
 <br/>
 
@@ -243,7 +243,7 @@ Document(page_content='일자리인터넷관련일자리증가예상.\n․중장
 
 ***
 
-#### 2. intfloat/multilingual-e5-largeEmbedding()
+### 2. intfloat/multilingual-e5-largeEmbedding()
 
 <br/>
 
@@ -263,8 +263,8 @@ Chroma에 업로드 하는 데 걸린 시간: 1시간 15분
 
 ***
 
-#### 3. InstructorEmbedding
+### 3. InstructorEmbedding
 
 ***
 
-#### 4. LlamaCppEmbedding
+### 4. LlamaCppEmbedding
