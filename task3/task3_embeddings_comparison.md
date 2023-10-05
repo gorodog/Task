@@ -18,7 +18,7 @@ InvalidDimensionException: Embedding dimension 768 does not match collection dim
 - 해결 방법 - 런타임 연결 해제 및 삭제하고 실행하니까 에러 안 남
 - DB 업데이트에 걸린 시간: 1분
 
-![0](img/0.HuggingFace.png)
+![0](https://github.com/gorodog/Task/blob/main/img/0.HuggingFace.png)
 
 ***
 
@@ -27,7 +27,7 @@ InvalidDimensionException: Embedding dimension 768 does not match collection dim
 - embeddings = HuggingFaceEmbeddings(model_name="intfloat/multilingual-e5-large")
 - DB 업데이트에 걸린 시간: 4분
 
-![1](img/1.intfloat.png)
+![1](https://github.com/gorodog/Task/blob/main/img/1.intfloat.png)
 
 ***
 
@@ -53,7 +53,7 @@ https://github.com/langchain-ai/langchain/issues/7634
 
 - DB 업데이트에 걸린 시간: 0초
 
-![2](img/2.GPT4ALL.png)
+![2](https://github.com/gorodog/Task/blob/main/img/2.GPT4ALL.png)
 
 ***
 
@@ -69,7 +69,7 @@ InvalidDimensionException: Embedding dimension 512 does not match collection dim
 
 - DB 업데이트에 걸린 시간: 5초
 
-![3](img/3.TensorflowHub.png)
+![3](https://github.com/gorodog/Task/blob/main/img/3.TensorflowHub.png)
 
 ***
 
@@ -79,7 +79,7 @@ InvalidDimensionException: Embedding dimension 512 does not match collection dim
 - embeddings = HuggingFaceBgeEmbeddings()
 - DB 업데이트에 걸린 시간: 9분
 
-![4](img/4.BGE.png)
+![4](https://github.com/gorodog/Task/blob/main/img/4.BGE.png)
 
 ***
 
