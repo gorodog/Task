@@ -311,6 +311,11 @@ result
 
 # kiwi형태소분석기
 
+[kiwi형태소분석기 설치](https://github.com/bab2min/kiwipiepy)
+
+<br/>
+
+명사 추출 함수 - 
 [Keybert와 kiwi형태소분석기를 사용하여 키워드추출 하기](https://datainclude.me/posts/Keybert%EC%99%80_kiwi%ED%98%95%ED%83%9C%EC%86%8C%EB%B6%84%EC%84%9D%EA%B8%B0%EB%A5%BC_%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC_%ED%82%A4%EC%9B%8C%EB%93%9C%EC%B6%94%EC%B6%9C_%ED%95%98%EA%B8%B0/)
 
 ``` python
