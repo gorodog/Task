@@ -1,3 +1,5 @@
+## 웹크롤링 코드
+
 ``` python
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -66,7 +68,7 @@ for index, value in enumerate(li_li):
 print(title_List)
 print(href_List)
 ```
-1. AttributeError
+### 1. AttributeError
 
 <br/>
 
@@ -95,7 +97,7 @@ List로 된 걸 반복해야한다고 해서, 아래와 같이 코드 수정
 
 ***
 
-2. IndexError
+### 2. IndexError
 
 <br/>
 
@@ -122,7 +124,7 @@ title = value.find_elements(By.TAG_NAME, "strong")[0].text
 
 ***
 
-3. 텍스트 append 속성 X
+### 3. 텍스트 append 속성 X
 
 ``` python
 #뉴스 본문 가져오기
@@ -154,7 +156,7 @@ title = value.find_elements(By.TAG_NAME, "strong")[0].text
 
 ***
 
-#### 결과
+### 결과
 
 <br/>
 
@@ -183,7 +185,7 @@ title = value.find_elements(By.TAG_NAME, "strong")[0].text
 
 <br/>
 
-### 챗GPT로 수정한 코드
+## 챗GPT로 수정한 코드
 
 ``` python
 from bs4 import BeautifulSoup
