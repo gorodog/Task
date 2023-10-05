@@ -372,32 +372,6 @@ print(nouns)
 [딥 러닝을 이용한 자연어 처리 입문 02. 텍스트 전처리(Text preproc… 02-04 불용어(Stopword)](https://wikidocs.net/22530)
 
 ``` python
-# from kiwipiepy import Kiwi
-# kiwi = Kiwi()
-
-# text = "서랍...서랍.서랍.배고프다.나는.사과가 먹고 싶다.. 고구마피자. "
-
-# # a = kiwi.tokenize(text)
-# # print(a)
-
-# a = kiwi.tokenize(text)
-# print(a)
-
-# # 명사 추출 함수
-# def noun_extractor(text):
-#     results = []
-#     result = kiwi.analyze(text)
-#     for token, pos, _, _ in result[0][0]:
-#         # 한 글자도 제거해버리는구나...
-#         if len(token) != 1 and pos.startswith('N') or pos.startswith('SL'):
-#             results.append(token)
-#     return results
-
-# nouns = noun_extractor(text)
-# print(nouns)
-
-
-
 from kiwipiepy import Kiwi
 kiwi = Kiwi()
 
@@ -430,7 +404,7 @@ def noun_extractor(text):
     results = []
     result = kiwi.analyze(text)
     for token, pos, _, _ in result[0][0]:
-        # 한 글자도 제거해버리는구나...
+        # 한 글자도 제거
         if len(token) != 1 and pos.startswith('N') or pos.startswith('SL'):
             results.append(token)
     return results
