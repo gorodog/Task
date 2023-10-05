@@ -1,4 +1,4 @@
-## embedding
+# embedding
 
 종류: https://python.langchain.com/docs/integrations/text_embedding/
 
@@ -7,7 +7,7 @@
 query = “당뇨병에 걸리면 어떤 증상이 있어?”
 
 ***
-### 0. HuggingFaceEmbeddings
+## 0. HuggingFaceEmbeddings
 
 <br/>
 
@@ -22,7 +22,7 @@ InvalidDimensionException: Embedding dimension 768 does not match collection dim
 
 ***
 
-### 1. intfloat/multilingual-e5-large
+## 1. intfloat/multilingual-e5-large
 
 - embeddings = HuggingFaceEmbeddings(model_name="intfloat/multilingual-e5-large")
 - DB 업데이트에 걸린 시간: 4분
@@ -31,7 +31,7 @@ InvalidDimensionException: Embedding dimension 768 does not match collection dim
 
 ***
 
-### 2. GPT4All
+## 2. GPT4All
 
 - !pip install gpt4all > /dev/null
 - from langchain.embeddings import GPT4AllEmbeddings
@@ -57,7 +57,7 @@ https://github.com/langchain-ai/langchain/issues/7634
 
 ***
 
-### 3. TensorflowHub
+## 3. TensorflowHub
 
 - !pip install tensorflow_text
 - from langchain.embeddings import TensorflowHubEmbeddings
@@ -73,7 +73,7 @@ InvalidDimensionException: Embedding dimension 512 does not match collection dim
 
 ***
 
-### 4. *BGE on Hugging Face
+## 4. *BGE on Hugging Face
 
 - from langchain.embeddings import HuggingFaceBgeEmbeddings
 - embeddings = HuggingFaceBgeEmbeddings()
@@ -83,7 +83,7 @@ InvalidDimensionException: Embedding dimension 512 does not match collection dim
 
 ***
 
-## 비교
+# 비교
 
 **시간:** 
 
@@ -92,6 +92,24 @@ InvalidDimensionException: Embedding dimension 512 does not match collection dim
 <br/>
 <br/>
 
+2. GPT4All(0초) <br/>
+3. TensorflowHub(5초) <br/>
+0. HuggingFaceEmbeddings(1분) <br/>
+1. intfloat/multilingual-e5-large(4분) <br/>
+4. BGE on Hugging Face(9분) <br/>
+
+<br/>
+<br/>
+
 **성능(개인적인 생각):** 
 
 <br/>1. intfloat/multilingual-e5-large > 3. TensorflowHub > 2. GPT4All > 0. HuggingFaceEmbeddings > 4. BGE on Hugging Face
+
+<br/>
+<br/>
+
+1. intfloat/multilingual-e5-large <br/>
+3. TensorflowHub <br/>
+2. GPT4All <br/>
+0. HuggingFaceEmbeddings <br/>
+4. BGE on Hugging Face <br/>
