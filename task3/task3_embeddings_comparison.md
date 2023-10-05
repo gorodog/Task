@@ -7,7 +7,7 @@
 query = “당뇨병에 걸리면 어떤 증상이 있어?”
 
 ***
-## 0. HuggingFaceEmbeddings
+### 0. HuggingFaceEmbeddings
 
 <br/>
 
@@ -22,7 +22,7 @@ InvalidDimensionException: Embedding dimension 768 does not match collection dim
 
 ***
 
-## 1. intfloat/multilingual-e5-large
+### 1. intfloat/multilingual-e5-large
 
 - embeddings = HuggingFaceEmbeddings(model_name="intfloat/multilingual-e5-large")
 - DB 업데이트에 걸린 시간: 4분
@@ -31,7 +31,7 @@ InvalidDimensionException: Embedding dimension 768 does not match collection dim
 
 ***
 
-## 2. GPT4All
+### 2. GPT4All
 
 - !pip install gpt4all > /dev/null
 - from langchain.embeddings import GPT4AllEmbeddings
@@ -57,7 +57,7 @@ https://github.com/langchain-ai/langchain/issues/7634
 
 ***
 
-## 3. TensorflowHub
+### 3. TensorflowHub
 
 - !pip install tensorflow_text
 - from langchain.embeddings import TensorflowHubEmbeddings
@@ -73,7 +73,7 @@ InvalidDimensionException: Embedding dimension 512 does not match collection dim
 
 ***
 
-## 4. *BGE on Hugging Face
+### 4. BGE on Hugging Face
 
 - from langchain.embeddings import HuggingFaceBgeEmbeddings
 - embeddings = HuggingFaceBgeEmbeddings()
