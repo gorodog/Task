@@ -236,7 +236,7 @@ result
 ```
 
 결과
-![img]()
+![img](https://github.com/gorodog/Task/blob/main/img/1_result.png)
 
 ***
 
