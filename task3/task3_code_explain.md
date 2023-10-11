@@ -143,7 +143,7 @@ https://www.pinecone.io/learn/
 !pip install sentence-transformers
 
 import os
-from langchain.text_splitter import CharacterTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
 from langchain.embeddings import SentenceTransformerEmbeddings
 from langchain.document_loaders import PyPDFLoader 
